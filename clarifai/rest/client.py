@@ -2700,8 +2700,8 @@ class Model(object):
       self.model_name = item['name']
       self.created_at = item['created_at']
       self.app_id = item['app_id']
-      self.model_version = item['model_version']['id']
-      self.model_status_code = item['model_version']['status']['code']
+      self.model_version = item.get('model_version', {'id': item['id']})['id']
+      self.model_status_code = item.get('model_version', {'status': {'code': 21100}})['status']['code']
 
       self.output_info = item.get('output_info', {})
 
